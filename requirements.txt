@@ -1,6 +1,6 @@
 django
 opencage
-allauth
+django-allauth
 crispy_forms
 bootstrap4
 multiselectfield
