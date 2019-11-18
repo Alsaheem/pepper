@@ -1,8 +1,8 @@
 django
 opencage
 django-allauth
-crispy_forms
+django-crispy_forms
 bootstrap4
-multiselectfield
+django-multiselectfield
 django_filter
 pillow
