@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %} 
+{% load staticfiles %}
+
+{% block content %}
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{api_key}}&libraries=places&callback=onLoaded" async defer></script>
+
+<script>
+        var onLoaded = function() {
+           // I am assuming your field has id of where_load, it might be different
+            var location_input = document.getElementById('city');
+            var autocomplete = new google.maps.places.Autocomplete(location_input);
+        }
+
+</script>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <h5><legend class="border-bottom mb-4 pt-4 display-3 text-center">My Profile</legend></h5>
+                    <img class="rounded-circle account-img" style="width:150px; height:150px;" src="{{ request.user.profile.profile_pic.url }}">
+                    {{ u_form|crispy }}
+                    {{ p_form|crispy }}
+                    {{p_form.media}}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Update</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <h2>My Schedule</h2>
+            <hr style="border:1px solid black">
+            <hr style="border:1px solid black">
+            {% for schedule in myschedule %}
+                <h3> on {{schedule.day}}'s</h3>
+                <p class="text-bolder"> <b>From : {{schedule.available_time_from}}</b></p>
+                <p class="text-bolder"> <b>To :   {{schedule.available_time_to}}</b></p>
+                <hr style="border:1px solid black">
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+    

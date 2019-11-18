@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load crispy_forms_tags %} 
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="text-center">{% trans "Sign Up " %}</h1>
+</div>
+<section class="testimonial py-5" id="testimonial">
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-md-4 py-5 bg-primary text-white text-center ">
+                <div class=" ">
+                    <div class="card-body">
+                        <img src="http://www.ansonika.com/mavia/img/registration_bg.svg" style="width:30%">
+                        <h2 class="py-3">Registration</h2>
+                        <p>Tation argumentum et usu, dicit viderer evertitur te has. Eu dictas concludaturque usu, facete detracto patrioque an per, lucilius pertinacia eu vel.
+
+</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 py-5 border bg-white">
+                <h4 class="pb-4">Please fill with your details</h4>
+                <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    <button type="submit" class="btn btn-success">{% trans "Sign Up" %} &raquo;</button>
+                  </form>
+                  <p>{% blocktrans %}Already have an account? Then please <a class="btn btn-primary btn-sm" href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+    
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

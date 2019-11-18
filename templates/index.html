@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="text-center ">
+    <!-- Hero Section-->
+    <section class="bg-light mb-4 ">
+        <div class="container-fluid"> 
+            <div class="row ">
+            <div class="col-lg-6 order-2 order-lg-1 text-center pt-4">
+                <h1 class="pt-4">PEPPER DEM GANG</h1>
+                <p class="lead">This is a site webapp you come to look for people that stays around you and see their public profile in order to link up with them. </p>
+                <p><a href="#" class="btn btn-primary shadow mr-2">Navigation Tips</a><a href="#" class="btn btn-outline-primary">Reviews</a></p>
+                <form action="{% url 'users:locate' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" id="lon" name='longitude'>
+                    <input type="hidden" id="lat" name='latitude'>
+                    <input onclick="getLocation()" type="submit" class="btn btn-primary" id='loc' name="action" value="Locate ME">
+                </form>
+            </div>
+            <div class="col-lg-6 order-1 "><img src="https://cdn.pixabay.com/photo/2015/04/20/17/38/couple-731890__340.jpg" alt="..." class="img-fluid"></div>
+            </div>
+        </div>
+    </section>
+</div>
+<hr>
+<hr>
+<hr>
+
+<!-- zip code collection part -->
+<p id="demo" ></p>
+<hr>
+<br>
+
+
+<div class="container mt-4 text-center mt-3" >
+    <form action="." method="POST">
+        {% csrf_token %}
+        <div class="form-group row ">
+            <div class="col-3"></div>
+            <label for="zipcode" class="col-sm-1 col-form-label font-bolder"><b>ZIPCODE</b></label>
+            <div class="col-6 col-sm-4 text-center">
+                <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="zipcode goes here ...">
+            </div>
+            <div class="col-3"></div>
+        </div>
+        <input type="submit" class="btn btn-primary" name="action" value="submit">
+    </form>
+</div>
+
+
+<body onload="getLocation()" >
+
+
+
+<script>
+    var x = document.getElementById("demo");
+    var y = document.getElementById("lat");
+    var z = document.getElementById("lon");
+
+    function getLocation() {
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+} else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+    function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude + 
+        "<br>Longitude: " + position.coords.longitude;
+        // set lat and lon
+        y.value = position.coords.latitude;
+        z.value = position.coords.longitude;
+
+    }
+
+    function showError(error) {
+switch(error.code) {
+    case error.PERMISSION_DENIED:
+        x.innerHTML = "User denied the request for Geolocation."
+        break;
+    case error.POSITION_UNAVAILABLE:
+        x.innerHTML = "Location information is unavailable."
+        break;
+    case error.TIMEOUT:
+        x.innerHTML = "The request to get user location timed out."
+        break;
+    case error.UNKNOWN_ERROR:
+        x.innerHTML = "An unknown error occurred."
+        break;
+    }
+    }
+    // setTimeout(document.getElementById('loc').click(),10000);
+</script>
+</body>
+{% endblock content %}
+    

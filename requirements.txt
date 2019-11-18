@@ -1,0 +1,8 @@
+django
+opencage
+allauth
+crispy_forms
+bootstrap4
+multiselectfield
+django_filter
+pillow

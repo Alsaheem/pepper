@@ -1,0 +1,33 @@
+Sooo....ive check out the functionalities....
+
+
+Here's what i observed
+The webapp needs your location to be able to give you any information at all.....
+
+Homepage asks for your location or requires you to input your location....
+
+It stores your location in the session and uses that to serve you from that point onward
+
+Youre allowed to choose weather you want male or female Aquintances
+
+You are allowed to pick either from a list of male profiles or female profiles
+
+It returns the list with respect to their distances in km from the location you picked....from the least distance to the highest 
+
+Theres also a filter for you to filter according to your specifications of what you have in mind
+
+When you click a user profile....you can see all their details..like....
+Profile picture....profile type...sex..sexuality..height...location...figure...etc...
+you can also see their prices and services rendered...and their free services...also availability..statistics and profile views....
+
+You can apply to become a peepr member as an individual or as an organization
+To register...you need
+
+Profile picture....profile type...sex..sexuality..height...location...figure...prices...foods...drinks..scent etc....
+
+There's a privacy policy also..
+Privacy is top priority here
+
+Theres a blog...for updates
+
+https://www.youtube.com/watch?v=lWV177es1bE
