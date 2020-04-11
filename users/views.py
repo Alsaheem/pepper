@@ -121,7 +121,7 @@ def ProfileList(request):
 def UserPublicProfile(request,user_username):
     user = get_object_or_404(User,username=user_username)
     profile = Profile.objects.get(user=user)
-    views =  profile.views +  1
+    profile.views =  profile.views +  1
     profile.save()
     schedule = AvailableDay.objects.filter(user=user)
     template_name = 'profile/public_profile.html'
